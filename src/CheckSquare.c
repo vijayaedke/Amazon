@@ -1,6 +1,9 @@
 //
 // Created by Viee on 12/30/2018.
 //
+/*
+ * How to check if given four points form a square
+ */
 
 #include<stdio.h>
 #include<stdlib.h>
