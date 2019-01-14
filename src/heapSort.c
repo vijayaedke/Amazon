@@ -112,3 +112,12 @@ int main(){
     
     return 0;
 }
+/*
+output : 
+
+
+Iterative Approach
+-56	1	3	10	28	25	
+Recursive Approach
+-56	1	3	10	28	25	
+*/
