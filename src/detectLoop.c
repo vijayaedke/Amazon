@@ -32,11 +32,16 @@ void printList(struct list *head){
 
 int detectLoop(struct list *start){
     struct list *head=start;
+    int size=0;
     while(start && head && start->next){
         head=head->next;
         start=start->next->next;
-        if(head==start)
+        size++;
+        if(head==start){
+            printf("Size=%d\n",size);
             return 1;
+        }
+       
         }
     return 0;
 }
@@ -65,5 +70,6 @@ int main(){
 
 /*
 output:
+Size=4
 Loop found
 */
