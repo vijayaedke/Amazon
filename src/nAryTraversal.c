@@ -31,8 +31,16 @@ Constraints:
 The height of the n-ary tree is less than or equal to 1000
 The total number of nodes is between [0, 10^4]
 
-*/
+Print all leaf nodes of an n-ary tree
+Input: edge[][] = {{1, 2}, {1, 3}, {2, 4}, {2, 5}, {3, 6}}
+Output: 4 5 6
+    1
+   / \
+  2   3
+ / \   \
+4   5   6
 
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -96,32 +104,66 @@ void preorderTraversal(struct nary *root){
 }//preorderTraversal
 
 
+void postorderTraversal(struct nary *root){
+    if(!root)
+        return;
+    preorderTraversal(root->child);
+    preorderTraversal(root->next);
+    printf("%d\t", root->data);
+}//postorderTraversal
+
+void printLeafNodes(struct nary *root){
+    if(!root)
+        return;
+    
+    if(root->child==NULL){
+        printf("%d\t", root->data);
+    }
+    
+    printLeafNodes(root->child);
+    printLeafNodes(root->next);
+}//printLeafNodes
+
 int main() {
 	//code
-	struct nary *root = create(1);
-    addChild(root, 3);
-    addChild(root, 2);
-    addChild(root, 4);
+// 	struct nary *root = create(1);
+//     addChild(root, 3);
+//     addChild(root, 2);
+//     addChild(root, 4);
     
-    addChild(root->child, 5);
-    addChild(root->child, 6);
+//     addChild(root->child, 5);
+//     addChild(root->child, 6);
 	
-// 	for(int i=0;i<3;i++)
-// 	    addChild(root, i+2);
+	struct nary *root = create(1);
+	addChild(root, 2);
+	addChild(root, 3);
 	
-// 	for(int i=1;i<=3;i++)
-// 	    addChild(root->child, i+4);
-    printf("\nInorder Traversal\t");
+	addChild(root->child, 4);
+	addChild(root->child, 5);
+	
+	
+	addChild(root->child->next, 6);
+	
+    	printf("\nInorder Traversal\t");
 	inorderTraversal(root);
 	printf("\nPreorder Traversal\t");
 	preorderTraversal(root);
+	printf("\nPostorder Traversal\t");
+	postorderTraversal(root);
+	
+	printf("\nLeaf Nodes\t");
+	printLeafNodes(root);
+	
 	return 0;
 }
 
 /*
 Output:
 
-Inorder Traversal	5	6	3	2	4	1	
-Preorder Traversal	1	3	5	6	2	4	
+
+Inorder Traversal	4	5	2	6	3	1	
+Preorder Traversal	1	2	4	5	3	6	
+Postorder Traversal	2	4	5	3	6	1	
+Leaf Nodes	4	5	6	
 
 */
