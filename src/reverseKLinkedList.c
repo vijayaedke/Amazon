@@ -102,15 +102,13 @@ struct list *reverseKList(struct list *head, int k){
         struct list *newstart = end->next;
         end->next = NULL;
         if(i==0){
-            // end = temphead;
+            end = temphead;
             head = reverse(temphead);
             temphead = head;
-            end = getEndOfList(temphead, k);
         }
         else{
-            // end = temphead;
+            end = temphead;
             temphead = reverse(temphead);
-            end = getEndOfList(temphead, k);
             prev->next = temphead;
         }
         end->next = newstart;
